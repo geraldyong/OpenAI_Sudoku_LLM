@@ -1,0 +1,301 @@
+/* General styling with a gradient background */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+}
+
+/* Sidebar styling */
+#sidebar {
+  width: 250px;
+  background: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  border-right: 2px solid #ccc;
+  height: 100vh;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#sidebar #sidebar-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#timer {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#remaining-digits {
+  text-align: center;
+}
+
+.tile {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  margin: 3px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.tile:hover {
+  background-color: #cceeff;
+}
+
+/* Main content container */
+#main-container {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+/* Submission container: visible by default */
+#submission-container {
+  display: block;
+}
+
+/* Active buttons container: hidden by default */
+#active-buttons {
+  display: none;
+}
+
+/* Input panel styling */
+#input-method {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#manual-input, #paste-input, #upload-input {
+  margin: 10px auto;
+  text-align: center;
+}
+
+/* Manual input grid styling with thicker block borders */
+#manual-table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+#manual-table td {
+  border: 1px solid #aaa;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+}
+
+#manual-table td.block-right {
+  border-right: 3px solid #000;
+}
+
+#manual-table td.block-bottom {
+  border-bottom: 3px solid #000;
+}
+
+#manual-table input {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Button container styling (the buttons are grouped in separate containers in the HTML) */
+#submission-buttons,
+#active-buttons {
+  display: inline-block;
+}
+
+#button-container button {
+  margin: 0 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#button-container button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#button-container button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+/* Puzzle board container */
+#puzzle-table-container {
+  position: relative;
+  z-index: 10;
+}
+
+/* Puzzle display area: make it a flex container so that the board and the next move display are side-by-side */
+#puzzle-display {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Puzzle state grid styling with grid references */
+/* The board is rendered as a 10x10 table:
+   - The first row (header row) and first column (row headers) are header cells.
+   - Header cells (th.header-cell) have no borders, use a smaller font, and are aligned:
+       * Column headers: text aligned to bottom.
+       * Row headers: text aligned to right.
+   - The inner board cells (td) have a 1px solid border, with thicker borders for 3×3 block boundaries.
+*/
+#puzzle-table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+#puzzle-table td {
+  border: 1px solid #333;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 16px;
+  position: relative;
+  transition: background 0.3s;
+}
+
+#puzzle-table th.header-cell {
+  border: none;
+  background: none;
+  font-size: 12px;
+  padding: 5px;
+}
+
+#puzzle-table tr.header-row th.header-cell:not(:first-child) {
+  text-align: bottom;
+}
+
+#puzzle-table tr:not(.header-row) th.header-cell {
+  text-align: right;
+}
+
+/* Thicker 3x3 block borders for board cells */
+#puzzle-table td.block-right {
+  border-right: 3px solid #000;
+}
+
+#puzzle-table td.block-bottom {
+  border-bottom: 3px solid #000;
+}
+
+/* Next Move Display: shown to the right of the puzzle board */
+#next-move-display {
+  min-width: 250px;
+  max-width: 400px;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  /* Ensure it appears to the right; no extra z-index needed here since it is a flex item */
+}
+
+/* Hover and highlight styles for board cells */
+.highlight {
+  background-color: yellow !important;
+}
+
+.hover-highlight {
+  background-color: #d0eaff !important;
+}
+
+.same-digit-highlight {
+  background-color: #d4f7d4 !important;
+}
+
+.tile-solved-highlight {
+  background-color: #b3ffb3 !important;
+}
+
+.tile-candidate-highlight {
+  background-color: #ffffb3 !important;
+}
+
+/* Modal styling */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 300px;
+  text-align: center;
+  position: relative;
+  border-radius: 4px;
+}
+
+.close {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.candidate-button {
+  margin: 5px;
+  padding: 8px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.candidate-button:hover {
+  background-color: #0056b3;
+}
+
+/* Utility classes */
+.hidden {
+  display: none!important;
+}
+
+#message {
+  text-align: center;
+  font-size: 18px;
+  color: green;
+  margin-top: 10px;
+}
+
+/* Flashing text */
+@keyframes flash {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.flashing {
+  animation: flash 1s linear infinite;
+}

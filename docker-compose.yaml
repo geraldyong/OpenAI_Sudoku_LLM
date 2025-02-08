@@ -1,0 +1,15 @@
+services:
+  sudoku-ms:
+    build: backend/.
+    image: sudoku-ms:latest
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+  sudoku-ui:
+    build: frontend/.
+    image: sudoku-ui:latest
+    ports:
+      - "80:80"
+    env_file:
+      - .env

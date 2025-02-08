@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sudoku Solver</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sidebar with title, timer, and remaining digits -->
+  <div id="sidebar">
+    <h1 id="sidebar-title">Sudoku Solver</h1>
+    <div id="timer">Time: 00:00:00</div>
+    <div id="remaining-digits">
+      <h3>Remaining</h3>
+      <div id="tiles"></div>
+    </div>
+  </div>
+  
+  <!-- Main content container -->
+  <div id="main-container">
+    <!-- Submission Container: visible by default -->
+    <div id="submission-container">
+      <div id="input-method">
+        <h2>Enter Puzzle</h2>
+        <label>
+          <input type="radio" name="inputType" value="manual" checked> Manual Input
+        </label>
+        <label>
+          <input type="radio" name="inputType" value="paste"> Paste Text
+        </label>
+        <label>
+          <input type="radio" name="inputType" value="upload"> Upload File
+        </label>
+      </div>
+      <div id="manual-input">
+        <table id="manual-table"></table>
+      </div>
+      <div id="paste-input" class="hidden">
+        <textarea id="puzzle-text" rows="10" cols="50" placeholder="Paste puzzle text here"></textarea>
+      </div>
+      <div id="upload-input" class="hidden">
+        <input type="file" id="file-upload" accept=".txt">
+      </div>
+      <div id="submission-buttons">
+        <button id="submit-puzzle">Submit Puzzle</button>
+      </div>
+    </div>
+    
+    <!-- Active Buttons Container: hidden by default -->
+    <div id="active-buttons" class="hidden">
+      <button id="new-puzzle-btn">Submit New Puzzle</button>
+      <button id="undo-btn" disabled>Undo</button>
+      <button id="redo-btn" disabled>Redo</button>
+      <button id="download-json">Download JSON</button>
+      <button id="download-md">Download Markdown</button>
+      <button id="propose-move-btn">Propose Next Move</button>
+    </div>
+    
+    <hr>
+    
+    <!-- Puzzle Display Section -->
+    <div id="puzzle-display">
+      <div id="puzzle-table-container"></div>
+      <!-- Container for Next Move Suggestion; hidden by default -->
+      <div id="next-move-display" class="hidden"></div>
+    </div>
+    
+    <div id="message"></div>
+  </div>
+  
+  <!-- Modal for cell operations -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="modal-close" class="close">&times;</span>
+      <div id="modal-body">
+        <p id="modal-cell"></p>
+        <div id="modal-buttons">
+          <button id="assign-btn" class="candidate-button">Assign Digit</button>
+          <button id="eliminate-btn" class="candidate-button">Eliminate Digit</button>
+        </div>
+        <div id="candidate-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
