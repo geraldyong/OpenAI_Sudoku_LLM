@@ -76,10 +76,12 @@ def call_llm(puzzle_str: str, conversation_history: List[str]):
     user_prompt = (
         "Below is the current 9x9 Sudoku board represented as JSON string.\n"
         "Each cell is referenced by a cell reference \"RxCy\" which denotes Row x and Column y.\n"
+        "The board is also split up into 3x3 blocks where the top left block is Block 1 and bottom right is Block 9.\n"
         f"{puzzle_str}\n\n"
         "A solved cell is represented by its digit under the key \"value\".\n"
         "An unsolved cell has null for value but has a candidate list under the key \"candidates\", which contains a list of the possible digits that can be likely for this cell.\n"
         "Analyze the board and propose the next move based solely on the data provided.\n\n"
+        "Brute force strategy can also be considered.\n"
         "Output only a JSON array:\n"
         "[\n"
         "  {\n"
